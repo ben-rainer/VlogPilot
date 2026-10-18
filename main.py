@@ -53,14 +53,13 @@ def build_html(state):
     <h1>Pico 2 W Web Controller</h1>
     <p class="status">LED Status: <span>{state}</span></p>
     <p>
-        <a href="/led/on" class="btn on" onclick="measureLatency(event, 'on')">Turn ON</a>
-        <a href="/led/off" class="btn off"  onclick="measureLatency(event, 'off')">Turn OFF</a>
+        <button type="button" class="btn on" onclick="measureLatency(event, 'on')">Turn ON</button>
+        <button type="button" class="btn off"  onclick="measureLatency(event, 'off')">Turn OFF</button>
     </p>
     
     <p id= "latency">Response time: -- ms</p>
     <script>
     async function measureLatency(event, command) {{
-        event.preventDefault();
 
         const start = performance.now();
 

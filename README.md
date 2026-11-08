@@ -11,11 +11,17 @@ Each prototype of this system is on a separate branch. This should preserve a go
 - [`proto-1`](https://github.com/ben-rainer/VlogPilot/tree/proto-1) - First prototype for turning on/off an LED
 
 # Installation
-### Method 1: Thonny IDE
-This code can be run using the [Thonny IDE](https://thonny.org/). Connect the microcontroller to a computer, select the RPI configuration in the bottom-right, and then press Run.
 
-### Method 2 (Recommended): VSCode
+### Method 1 (Recommended): VSCode
 First, connect the board to your computer.
 Clone this project into VSCode and install the required extensions (especially MicroPico). 
 
+### Method 2: Thonny IDE
+This code can be run using the [Thonny IDE](https://thonny.org/). Connect the microcontroller to a computer, select the RPI configuration in the bottom-right, and then press Run.
+
 You can then run the code on the board using MicroPico's functionality and view the logs in the Terminal.
+
+# Board Connection Note
+The board is only capable of handling one USB task at a time. If it is connected to your VSCode, it cannot execute its own preloaded instructions.
+
+If you wish to load instructions onto the board and test it, you must close all active instances of programs that could connect to the board (such as VSCode). The indicator LED will turn on if your program runs successfully.

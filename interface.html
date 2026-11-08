@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>VlogPilot Prototype</title>
+
+        <style>
+            button { border: 1px solid white; color: white; padding: 6px; background-color: black; width: 100px; height: 100px; font-size: 300%; }
+            button:hover { background-color: rgb(15, 15, 15); }
+            html, body, .interface { background-color: black; width: 100%; height: 100%; padding: 0; margin: 0; }
+            .interface { display: flex; justify-content: center; align-items: center; flex-direction: column; }
+            .row { display: flex; }
+        </style>
+
+        <script>function f(data) { fetch(`./motor/${data}/`) }</script>
+    </head>
+    <body>
+        <d class="interface">
+            <d class="row">
+                <button></button>
+                <button onclick="f('up')">&#9650;</button>
+                <button></button>
+            </d>
+            <d class="row">
+                <button onclick="f('left')">&#9664;</button>
+                <button>o</button>
+                <button onclick="f('right')">&#9654;</button>
+            </d>
+            <d class="row">
+                <button></button>
+                <button onclick="f('down')">&#9660;</button>
+                <button></button>
+            </d>
+        </d>
+    </body>
+</html>

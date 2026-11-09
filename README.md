@@ -9,6 +9,7 @@ Code is written in [MicroPython](https://micropython.org/).
 # Repo Strucutre
 Each prototype of this system is on a separate branch. This should preserve a good edit trail of each of our attempts. The [`main`](https://github.com/ben-rainer/VlogPilot) branch should always be reserved for our best work.
 - [`proto-1`](https://github.com/ben-rainer/VlogPilot/tree/proto-1) - First prototype for turning on/off an LED
+- [`proto-2`](https://github.com/ben-rainer/VlogPilot/tree/proto-2) - Second prototype for controlling dual servo motors
 
 # Installation
 

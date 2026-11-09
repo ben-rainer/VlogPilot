@@ -61,10 +61,55 @@ app = Microdot()
 
 # When the user requests the webpage located at "/", return this content
 # Note the content header at the end of the return statement so the browser interprets it as a webpage and not text.
+
 @app.route('/')
 async def index(request):
-    return f"""<!DOCTYPE html><meta content="width=device-width,initial-scale=1"name=viewport><title>VlogPilot Prototype</title><style>button{{border:1px solid #fff;color:#fff;padding:6px;background-color:#000;width:100px;height:100px;font-size:300%}}button:hover{{background-color:#0f0f0f}}.interface,body,html{{background-color:#000;width:100%;height:100%;padding:0;margin:0}}.interface{{display:flex;justify-content:center;align-items:center;flex-direction:column}}.row{{display:flex}}</style><script>function f(f){{fetch(`./motor/${{f}}/`)}}</script><body><d class=interface><d class=row><button onclick='f("stopx")'>x</button> <button onclick='f("up")'>&#9650;</button> <button></button></d><d class=row><button onclick='f("left")'>&#9664;</button> <button onclick='f("reset")'>o</button> <button onclick='f("right")'>&#9654;</button></d><d class=row><button></button> <button onclick='f("down")'>&#9660;</button> <button></button></d></d>""", {'Content-Type': 'text/html'}
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VlogPilot Controller</title>
+<style>
+*{{box-sizing:border-box}}
+body{{margin:0;background:#101b16;color:#fff;font-family:Arial,sans-serif}}
+main{{max-width:380px;margin:auto;padding:25px 15px;text-align:center}}
+h1{{color:#c4d68d;margin-bottom:5px}}
+p{{color:#cbd5c5}}
+.grid{{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:25px}}
+button{{min-height:83px;border:2px solid #a8bf69;border-radius:12px;background:#304b3b;color:white;font-size:30px;cursor:pointer;touch-action:manipulation}}
+button:active{{background:#719044}}
+button:focus-visible{{outline:3px solid #fff;outline-offset:2px}}
+.stop{{background:#9d3939;border-color:#d87b7b;font-size:17px;font-weight:bold}}
+.reset{{font-size:17px;font-weight:bold}}
+</style>
+</head>
+<body>
+<main>
+<h1>VlogPilot</h1>
+<p>Camera Position Controller</p>
+<div class="grid">
+<button class="stop" onclick="send('stopx')" aria-label="Stop horizontal rotation">STOP</button>
+<button onclick="send('up')" aria-label="Tilt up">&#9650;</button>
+<span></span>
+<button onclick="send('left')" aria-label="Rotate left">&#9664;</button>
+<button class="reset" onclick="send('reset')" aria-label="Reset position">RESET</button>
+<button onclick="send('right')" aria-label="Rotate right">&#9654;</button>
+<span></span>
+<button onclick="send('down')" aria-label="Tilt down">&#9660;</button>
+<span></span>
+</div>
+</main>
+<script>
+function send(cmd){{
+fetch('/motor/'+cmd+'/').catch(()=>{{}});
+}}
+</script>
+</body>
+</html>""", {'Content-Type': 'text/html'}
 
+
+    
 # Action to do when the motor is moved. We must return some content to the client, so we sent the string 'sent' to indicate that the request was processed
 # Defined asynchronously so that other things may happen concurrently.
 @app.route('/motor/up/')
